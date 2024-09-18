@@ -1,7 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-import { signIn, signOut, getCurrentUser } from '@aws-amplify/auth';
+// import { signIn, signOut, getCurrentUser } from '@aws-amplify/auth';
 import { useCustomToast } from '../hooks/useCustomToast';
-import { FormData } from '../types';
 
 // Define the shape of the user data and context
 interface User {
@@ -11,8 +10,8 @@ interface User {
 
 interface UserContextType {
     user: User | null;
-    login: (username: string, password: string) => void;
-    logout: () => void;
+    // login: (username: string, password: string) => void;
+    // logout: () => void;
 }
 
 // Create a default value for the context
@@ -25,42 +24,42 @@ interface UserProviderProps {
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
-    const { showToast } = useCustomToast();
+    // const { showToast } = useCustomToast();
 
-    const login = async (username: string, password: string) => {
-        try {
-            const { isSignedIn } = await signIn({username, password});
-            if(isSignedIn) {
+    // const login = async (username: string, password: string) => {
+    //     try {
+    //         const { isSignedIn } = await signIn({username, password});
+    //         if(isSignedIn) {
                 
-                showToast("You have successfully logged in.", { type: 'success', autoClose: 500 });
-                const { userId, username } = await getCurrentUser();
-                setUser({
-                    email: username,
-                    userId: userId
-                });
+    //             showToast("You have successfully logged in.", { type: 'success', autoClose: 500 });
+    //             const { userId, username } = await getCurrentUser();
+    //             setUser({
+    //                 email: username,
+    //                 userId: userId
+    //             });
 
-                localStorage.setItem('userId', JSON.stringify(userId));
-            }
-        } catch (err) { 
-            showToast("There was an error with your login.", { type: 'error', autoClose: 500 });
-        }
-    };
+    //             localStorage.setItem('userId', JSON.stringify(userId));
+    //         }
+    //     } catch (err) { 
+    //         showToast("There was an error with your login.", { type: 'error', autoClose: 500 });
+    //     }
+    // };
 
-    const logout = async () => {
-        try {
-            await signOut();
-            setUser({
-                email: '',
-                userId: ''
-            });
-            localStorage.setItem('userId', '');
-            showToast("You have successfully logged out.", { type: 'success', autoClose: 500 });
-            setUser(null);
-        } catch (err) { console.log(err) }
-    };
+    // const logout = async () => {
+    //     try {
+    //         await signOut();
+    //         setUser({
+    //             email: '',
+    //             userId: ''
+    //         });
+    //         localStorage.setItem('userId', '');
+    //         showToast("You have successfully logged out.", { type: 'success', autoClose: 500 });
+    //         setUser(null);
+    //     } catch (err) { console.log(err) }
+    // };
 
     return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user }}>
         {children}
     </UserContext.Provider>
     );

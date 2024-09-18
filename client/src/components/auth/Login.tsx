@@ -33,18 +33,18 @@ function Login({updateAuthStatus}: LoginProps): React.ReactElement {
         setMessage('');
     
         try {
-          const response = await axios.post('http://localhost:5000/login', formData);
-          setMessage('Login successful!');
-          console.log('Tokens:', response.data);
-        // You can store the tokens in localStorage/sessionStorage if required
-        // localStorage.setItem('idToken', response.data.idToken);
-        // localStorage.setItem('refreshToken', response.data.refreshToken);
-          localStorage.setItem('accessToken', response.data.accessToken);
-          updateAuthStatus(true);
-          navigate('/dashboard');
+            const response = await axios.post('http://localhost:5000/login', formData);
+            setMessage('Login successful!');
+            console.log('Tokens:', response.data);
+            // You can store the tokens in localStorage/sessionStorage if required
+            localStorage.setItem('idToken', response.data.idToken);
+            localStorage.setItem('refreshToken', response.data.refreshToken);
+            localStorage.setItem('accessToken', response.data.accessToken);
+            updateAuthStatus(true);
+            navigate('/dashboard');
         } catch (error) {
-          setError('Login failed. Please check your username and password.');
-          console.error('Login error:', error);
+            setError('Login failed. Please check your username and password.');
+            console.error('Login error:', error);
         }
       };
 
