@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './components/auth/Register';
+import HomePage from './components/Home/HomePage';
 import { AppContainer, MainContent } from './styles';
 import { UserProvider } from './context/UserContext';
 import Login from './components/auth/Login';
@@ -28,7 +29,7 @@ function App() {
           <SiteNav isAuthenticated={isAuthenticated}/>
           <MainContent>
             <Routes>
-              {/* <Route path="/" element={<HomePage />} /> */}
+              <Route path="/" element={<HomePage />} />
               {/* <Route path="/transaction-form" element={<TransactionForm isAuthenticated={isAuthenticated} />} /> */}
               {/* <Route path="/about" element={<About isAuthenticated={isAuthenticated}/>} /> */}
               

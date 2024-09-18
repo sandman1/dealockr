@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import ProfileDropdown from './ProfileDropdown';
 import { AuthLinks, LinkContainer, Logo, NavbarContainer, NavLinks } from './styles';
-import useClickOutside from '../../hooks/useClickOutside';
+import useClickOutside from '../hooks/useClickOutside';
 
 
 
