@@ -1,7 +1,7 @@
 // // Import the necessary modules
 const express = require('express');
 const cors = require('cors');
-const { CognitoIdentityProviderClient, SignUpCommand, InitiateAuthCommand } = require('@aws-sdk/client-cognito-identity-provider');
+const { CognitoIdentityProviderClient, SignUpCommand, InitiateAuthCommand, GlobalSignOutCommand } = require('@aws-sdk/client-cognito-identity-provider');
 const bodyParser = require('body-parser');
 const verifyToken = require('./middlewares/auth');
 
@@ -118,6 +118,31 @@ app.post('/login', async (req, res) => {
     });
   } catch (error) {
     res.status(400).json({
+      error: error.message,
+    });
+  }
+});
+
+// Sign-out route //////////////////////////////////////////////////////////////////////////
+app.post('/signout', async (req, res) => {
+  const { accessToken } = req.body; // Access token passed from client
+
+  if (!accessToken) {
+    return res.status(400).json({ message: 'Access token is required' });
+  }
+
+  try {
+    const command = new GlobalSignOutCommand({
+      AccessToken: accessToken,
+    });
+
+    // Sign out user by invalidating the access token
+    await cognitoClient.send(command);
+
+    res.status(200).json({ message: 'Successfully signed out' });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error signing out',
       error: error.message,
     });
   }

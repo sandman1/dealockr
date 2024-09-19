@@ -1,5 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
-// import { signIn, signOut, getCurrentUser } from '@aws-amplify/auth';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { useCustomToast } from '../hooks/useCustomToast';
 
 // Define the shape of the user data and context
@@ -23,46 +22,22 @@ interface UserProviderProps {
 }
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-    const [user, setUser] = useState<User | null>(null);
-    // const { showToast } = useCustomToast();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const { showToast } = useCustomToast();
 
-    // const login = async (username: string, password: string) => {
-    //     try {
-    //         const { isSignedIn } = await signIn({username, password});
-    //         if(isSignedIn) {
-                
-    //             showToast("You have successfully logged in.", { type: 'success', autoClose: 500 });
-    //             const { userId, username } = await getCurrentUser();
-    //             setUser({
-    //                 email: username,
-    //                 userId: userId
-    //             });
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
-    //             localStorage.setItem('userId', JSON.stringify(userId));
-    //         }
-    //     } catch (err) { 
-    //         showToast("There was an error with your login.", { type: 'error', autoClose: 500 });
-    //     }
-    // };
-
-    // const logout = async () => {
-    //     try {
-    //         await signOut();
-    //         setUser({
-    //             email: '',
-    //             userId: ''
-    //         });
-    //         localStorage.setItem('userId', '');
-    //         showToast("You have successfully logged out.", { type: 'success', autoClose: 500 });
-    //         setUser(null);
-    //     } catch (err) { console.log(err) }
-    // };
-
-    return (
-    <UserContext.Provider value={{ user }}>
-        {children}
-    </UserContext.Provider>
-    );
+  return (
+  <UserContext.Provider value={{ user }}>
+      {children}
+  </UserContext.Provider>
+  );
 };
 
 export const useUser = (): UserContextType => {

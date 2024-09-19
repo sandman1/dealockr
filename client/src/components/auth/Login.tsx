@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useCustomToast } from '../../hooks/useCustomToast';
 
 interface LoginProps {
     updateAuthStatus: (status: boolean) => void;
@@ -13,6 +14,7 @@ interface LoginProps {
 
 function Login({updateAuthStatus}: LoginProps): React.ReactElement {
     const navigate = useNavigate();
+    const { showToast } = useCustomToast();
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -31,20 +33,20 @@ function Login({updateAuthStatus}: LoginProps): React.ReactElement {
         e.preventDefault();
         setError('');
         setMessage('');
-    
+    console.log(formData);
         try {
             const response = await axios.post('http://localhost:5000/login', formData);
             setMessage('Login successful!');
-            console.log('Tokens:', response.data);
+            
             // You can store the tokens in localStorage/sessionStorage if required
             localStorage.setItem('idToken', response.data.idToken);
             localStorage.setItem('refreshToken', response.data.refreshToken);
             localStorage.setItem('accessToken', response.data.accessToken);
             updateAuthStatus(true);
+            showToast("Login successful!", { type: 'success', autoClose: 2000 });
             navigate('/dashboard');
         } catch (error) {
-            setError('Login failed. Please check your username and password.');
-            console.error('Login error:', error);
+            showToast("Login failed. Please check your username and password.", { type: 'error', autoClose: 2000 });
         }
       };
 
