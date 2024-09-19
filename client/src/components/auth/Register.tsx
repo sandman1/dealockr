@@ -26,6 +26,8 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    console.log('formData');
+    console.log(formData);
     // Validate inputs (simple example)
     if (!formData.username || !formData.email || !formData.password) {
         alert('Please fill all fields');
@@ -90,14 +92,22 @@ const Register = () => {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>User Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter User Name"
-                            onChange={handleChange} />
+                        <Form.Control 
+                          type="text" 
+                          name="username" 
+                          placeholder="Enter User Name"
+                          value={formData.username}
+                          onChange={handleChange} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email Address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email"
-                            onChange={handleChange} />
+                        <Form.Control 
+                          type="email" 
+                          name="email" 
+                          placeholder="Enter email"
+                          value={formData.email}
+                          onChange={handleChange} />
                         <Form.Text className='text-muted'>
                             We'll never share your email!
                         </Form.Text>
@@ -105,8 +115,12 @@ const Register = () => {
 
                     <Form.Group className="mb-3" controlId="formPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Enter Password"
-                            onChange={handleChange} />
+                        <Form.Control 
+                          type="password" 
+                          name="password" 
+                          placeholder="Enter Password"
+                          value={formData.password}
+                          onChange={handleChange} />
                     </Form.Group>
 
                     <Button variant="primary" type="submit">Register &gt;&gt;</Button>
