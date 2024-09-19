@@ -53,13 +53,21 @@ function Validate() {
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicText">
                             <Form.Label>User Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter User Name"
+                            <Form.Control 
+                                type="text"
+                                name="username"
+                                value={formData.username} 
+                                placeholder="Enter User Name"
                                 onChange={handleChange} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicText">
                             <Form.Label>Authentication Code</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Authentication Code"
+                            <Form.Control 
+                                type="text" 
+                                name="code"
+                                value={formData.code}
+                                placeholder="Enter Authentication Code"
                                 onChange={handleChange} />
                         </Form.Group>
 

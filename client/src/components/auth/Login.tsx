@@ -59,17 +59,27 @@ function Login({updateAuthStatus}: LoginProps): React.ReactElement {
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicText">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="text" placeholder="Enter User Name"
+                            <Form.Control 
+                                type="text" 
+                                name="username" 
+                                value={formData.username}
+                                placeholder="Enter User Name"
                                 onChange={handleChange} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" minLength={8} placeholder="Enter Password"
+                            <Form.Control 
+                                type="password" 
+                                minLength={8}
+                                name="password" 
+                                value={formData.password}
+                                placeholder="Enter Password"
                                 onChange={handleChange} />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit" >Login &gt;&gt;</Button>
+                        <Button variant="primary" 
+                            type="submit" >Login &gt;&gt;</Button>
                         &nbsp;&nbsp;
                         <Link
                             to='/register'>
