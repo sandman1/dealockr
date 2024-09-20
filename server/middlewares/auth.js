@@ -17,7 +17,7 @@ const verifyToken = (req, res, next) => {
     const decoded = jwt.decode(formattedToken, { complete: true });
 
     // Verify the JWT if necessary (e.g., using a Cognito JWT public key)
-    const userPoolId = 'your-cognito-user-pool-id'; // Replace with your Cognito User Pool ID
+    const userPoolId = 'us-west-1_VARBNypFv'; // Replace with your Cognito User Pool ID
     const issuer = `https://cognito-idp.your-region.amazonaws.com/${userPoolId}`;
 
     if (decoded.payload.iss !== issuer) {

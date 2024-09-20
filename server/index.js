@@ -19,7 +19,7 @@ const cognitoClient = new CognitoIdentityProviderClient({
   region: 'us-west-1', // Example: 'us-east-1'
 });
 
-const CLIENT_ID = '3l3so8gqj0bv1b02rl8shi0ghl'; // Replace with your Cognito App Client ID
+const CLIENT_ID = '4stlqd4ea32d2j51plb6dmouec'; // Replace with your Cognito App Client ID
 
 // Register Route //////////////////////////////////////////////////////////////////////////
 // This endpoint takes the user’s information and registers them in Cognito.
