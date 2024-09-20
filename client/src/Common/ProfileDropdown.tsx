@@ -26,9 +26,9 @@ function ProfileDropdown({dropdownRef, setIsLoggedIn}: ProfileDropdownProps): Re
           await axios.post('http://localhost:5000/signout', { accessToken });
     
           // Clear tokens from local storage
-          localStorage.removeItem('idToken');
+        //   localStorage.removeItem('idToken');
           localStorage.removeItem('accessToken');
-          localStorage.removeItem('refreshToken');
+        //   localStorage.removeItem('refreshToken');
     
           showToast("Signed out successfully.", { type: 'success', autoClose: 2000 });
           setIsLoggedIn(false)

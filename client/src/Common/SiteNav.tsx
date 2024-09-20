@@ -20,7 +20,7 @@ function SiteNav({isAuthenticated}: SiteNavProps): React.ReactElement {
 
 
     useEffect(() => {
-        const savedData = localStorage.getItem('idToken');
+        const savedData = localStorage.getItem('accessToken');
         
         if (savedData) {
           setIsLoggedIn(true);
