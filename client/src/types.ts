@@ -12,7 +12,7 @@ export interface Item {
 // }
 
 export interface FormData {
-    id: string
+    // id: string
     title: string 
     amount: string 
     currency: string
