@@ -16,6 +16,9 @@ import TransactionForm from './Transactions/TransactionForm';
 import TransactionDetails from './Transactions/TransactionDetails';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Dashboard from './Dashboard/Dashboard';
+import Step1 from './components/auth/Step1';
+import Step2 from './components/auth/Step2';
+import Step3 from './components/auth/Step3';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -39,6 +42,9 @@ function App() {
               {/* all need to be protected routes go here */}
               <Route path="/transaction-form" element={<TransactionForm isAuthenticated={isAuthenticated} />} />
               <Route path="/transactionDetails" element={<TransactionDetails />} />
+              <Route path="/step1" element={<Step1 />} />
+              <Route path="/step2" element={<Step2 />} />
+              <Route path="/step3" element={<Step3 />} />
               <Route
                 path="/dashboard"
                 element={
