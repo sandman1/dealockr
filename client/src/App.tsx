@@ -19,6 +19,9 @@ import Dashboard from './Dashboard/Dashboard';
 import Step1 from './components/auth/Step1';
 import Step2 from './components/auth/Step2';
 import Step3 from './components/auth/Step3';
+import { FormProvider } from './components/auth/FormContext';
+import RegistrationForm from './components/auth/RegistrationForm';
+import PrivacyPolicyPage from './PrivacyPolicyPage';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -32,6 +35,7 @@ function App() {
 
   return (
     <UserProvider>
+      <FormProvider>
       <BrowserRouter>
         <AppContainer>
           <SiteNav isAuthenticated={isAuthenticated}/>
@@ -42,9 +46,10 @@ function App() {
               {/* all need to be protected routes go here */}
               <Route path="/transaction-form" element={<TransactionForm isAuthenticated={isAuthenticated} />} />
               <Route path="/transactionDetails" element={<TransactionDetails />} />
-              <Route path="/step1" element={<Step1 />} />
+              <Route path="/verificationForm" element={<RegistrationForm />} />
+              {/* <Route path="/step1" element={<Step1 />} />
               <Route path="/step2" element={<Step2 />} />
-              <Route path="/step3" element={<Step3 />} />
+              <Route path="/step3" element={<Step3 />} /> */}
               <Route
                 path="/dashboard"
                 element={
@@ -56,12 +61,14 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login updateAuthStatus={updateAuthStatus} />} />
               <Route path="/validate" element={<Validate />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             </Routes>
             <ToastContainer autoClose={3000} closeOnClick hideProgressBar={true} />
           </MainContent>
           <SiteFooter />
         </AppContainer>
         </BrowserRouter>
+      </FormProvider>
     </UserProvider>
   );
 }

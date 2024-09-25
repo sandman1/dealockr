@@ -46,7 +46,8 @@ function SiteNav({isAuthenticated}: SiteNavProps): React.ReactElement {
         ) : (
           <>
             <LinkContainer to="/login">Login</LinkContainer>
-            <LinkContainer to="/register">Register</LinkContainer>
+            {/* <LinkContainer to="/register">Register</LinkContainer> */}
+            <LinkContainer to="/verificationForm">Register</LinkContainer>
           </>
         )}
       </AuthLinks>
