@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [hasPurchasedCourses, setHasPurchasedCourses] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
     if (token) {
       setIsAuthenticated(true);
       checkPurchasedCourses(token);
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = () => {
     setIsAuthenticated(true);
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
     if (token) {
       checkPurchasedCourses(token);
     }
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setIsAuthenticated(false);
     setHasPurchasedCourses(false);
-    localStorage.removeItem('token');
+    localStorage.removeItem('idToken');
   };
 
   return (

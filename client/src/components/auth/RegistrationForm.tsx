@@ -1,35 +1,8 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
-
-const FormContainer = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-`;
-
-const Button = styled.button`
-  padding: 10px 20px;
-  border: none;
-  background-color: #007BFF;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:disabled {
-    background-color: #ccc;
-  }
-`;
+import { FormContainer } from './styles';
 
 const RegistrationForm: React.FC = () => {
   const [step, setStep] = useState(1);

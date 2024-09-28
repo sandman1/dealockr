@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const FormContainer = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,7 +56,7 @@ export const Select = styled.select`
   border-radius: 4px;
 `;
 
-export const ErrorContainer = styled.p`
+export const ErrorContainer = styled.span`
   color: red;
 `;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Container, ErrorContainer, FormWrapper, Input } from './styles';
+import { Button, ButtonContainer, Container, ErrorContainer, FormWrapper, Input } from './styles';
 
 interface Step2Data {
   companyName: string;
@@ -55,8 +55,10 @@ const Step2Form: React.FC<{ onNext: () => void; onBack: () => void; saveData: (d
             <Input {...register('companyZip')} placeholder="Zip/Postal code" />
             {errors.companyZip && <ErrorContainer>{errors.companyZip.message}</ErrorContainer>}
 
-            <Button type="button" onClick={onBack}>Back</Button>
-            <Button type="submit">Save and Next</Button>
+            <ButtonContainer>
+                <Button type="button" onClick={onBack}>Back</Button>
+                <Button type="submit">Save and Next</Button>
+            </ButtonContainer>
             </FormWrapper>
         </Container>
     );

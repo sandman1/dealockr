@@ -121,8 +121,6 @@ function Dashboard(): React.ReactElement {
   
   useEffect(() => {
     fetchTransactions();
-    console.log('data');
-      console.log(data);
   }, []);
 
   const updateSearchTerm = (searchTerm: string) => {
