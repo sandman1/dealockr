@@ -31,20 +31,20 @@ function isTokenExpired(accessToken) {
 // Function to refresh tokens using the refresh token
 async function refreshTokens(ClientId, refreshToken) {
   const params = {
-      AuthFlow: 'REFRESH_TOKEN_AUTH',
-      ClientId,
-      AuthParameters: {
-          'REFRESH_TOKEN': refreshToken,
-      },
+    AuthFlow: 'REFRESH_TOKEN_AUTH',
+    ClientId,
+    AuthParameters: {
+      'REFRESH_TOKEN': refreshToken,
+    },
   };
 
   try {
-      const command = new InitiateAuthCommand(params);
-      const response = await cognitoClient.send(command);
-      return response.AuthenticationResult;
+    const command = new InitiateAuthCommand(params);
+    const response = await cognitoClient.send(command);
+    return response.AuthenticationResult;
   } catch (error) {
-      console.error("Error refreshing tokens:", error);
-      throw error;
+    console.error("Error refreshing tokens:", error);
+    throw error;
   }
 }
 
@@ -154,7 +154,7 @@ app.post('/login', async (req, res) => {
 // Sign-out route //////////////////////////////////////////////////////////////////////////
 app.post('/signout', async (req, res) => {
   console.log("gets here to sign out");
-  const { accessToken } = req.body; // Access token passed from client
+  const { accessToken, refreshToken } = req.body; // Destructure both accessToken and refreshToken
 
   if (!accessToken) {
     console.log("Access token is required");
@@ -162,18 +162,15 @@ app.post('/signout', async (req, res) => {
   }
 
   try {
+    let currentAccessToken = accessToken; // Use a new variable for the access token
 
-    if (isTokenExpired(accessToken)) {
+    if (isTokenExpired(currentAccessToken)) {
       console.log("Access token expired. Refreshing...");
-      const newTokens = await refreshTokens(ClientId, refreshToken);
-      accessToken = newTokens.AccessToken;
+      const newTokens = await refreshTokens(CLIENT_ID, refreshToken);
+      currentAccessToken = newTokens.AccessToken;
     }
 
-    const params = {
-      AccessToken: accessToken,
-    };
-
-    const command = new GlobalSignOutCommand(params);
+    const command = new GlobalSignOutCommand({AccessToken: currentAccessToken});
 
     // Sign out user by invalidating the access token
     await cognitoClient.send(command);

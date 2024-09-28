@@ -36,7 +36,6 @@ function SearchComponent({searchQuery}: SearchComponentProps): React.ReactElemen
 
   const performSearch = (query: string) => {
     // Replace this with the actual search logic (e.g., API call)
-    // console.log('Searching for:', searchQuery);
     searchQuery(query);
   };
 

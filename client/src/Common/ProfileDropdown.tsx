@@ -18,9 +18,7 @@ function ProfileDropdown({dropdownRef, setIsLoggedIn}: ProfileDropdownProps): Re
         
         const accessToken = localStorage.getItem('accessToken'); // Retrieve the access token
         const refreshToken = localStorage.getItem('refreshToken'); // Retrieve the refresh token
-    
-        console.log('Access Token:', accessToken);
-        console.log('Refresh Token:', refreshToken);
+        const idToken = localStorage.getItem('idToken'); // Retrieve the refresh token
     
         if (!accessToken) {
             alert('No user is currently logged in');
@@ -39,6 +37,7 @@ function ProfileDropdown({dropdownRef, setIsLoggedIn}: ProfileDropdownProps): Re
             // Clear tokens from local storage
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
+            localStorage.removeItem('idToken');
     
             // Show success message
             showToast("Signed out successfully.", { type: 'success', autoClose: 2000 });

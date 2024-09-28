@@ -45,7 +45,6 @@ const Register = () => {
         password: formData.password,
         email: formData.email,
       });
-      console.log('Registration successful:', response.data);
       navigate('/validate')
     } catch (error) {
       console.error('Registration failed:', error);

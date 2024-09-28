@@ -175,7 +175,7 @@ const Step3Form: React.FC<{ onSubmit: () => void; onBack: () => void; saveData: 
         <h4>Verification Method</h4>
 
         <Select {...register('verificationMethod')} onChange={verificationMethodChangeHandler}>
-            <option value="" disabled selected>
+            <option value="" disabled>
                 Select a verification method
             </option>
             {verificationMethodTypes.map((method, index) => (

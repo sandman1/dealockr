@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styled from 'styled-components';
-import { Button, Container, FormWrapper, Select } from './styles';
+import { Button, ButtonContainer, Container, ErrorContainer, FormWrapper, Label, Select } from './styles';
 import countryList from 'react-select-country-list'
 
 interface Step1Data {
@@ -40,10 +40,6 @@ const Input = styled.input`
   border-radius: 4px;
 `;
 
-const ErrorMessage = styled.p`
-  color: red;
-`;
-
 const Step1Form: React.FC<{ onNext: () => void; saveData: (data: Step1Data) => void }> = ({ onNext, saveData }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<Step1Data>({
     resolver: yupResolver(schema),
@@ -64,23 +60,22 @@ const Step1Form: React.FC<{ onNext: () => void; saveData: (data: Step1Data) => v
         Your verified identity must be the same as the account holder's name on any bank account used to pay or receive funds from Escrow.com</p>
         
         <h4>Details</h4>
-
-        <Input {...register('firstName')} placeholder="First Name" />
-        {errors.firstName && <ErrorMessage>{errors.firstName.message}</ErrorMessage>}
-
+        <Label>First name {errors.firstName && <ErrorContainer>{errors.firstName.message}</ErrorContainer>}</Label>
+        <Input {...register('firstName')} placeholder="Enter first name"  />
+        
         <Input {...register('middleName')} placeholder="Middle Name" />
 
         <Input {...register('lastName')} placeholder="Last Name" />
-        {errors.lastName && <ErrorMessage>{errors.lastName.message}</ErrorMessage>}
+        {errors.lastName && <ErrorContainer>{errors.lastName.message}</ErrorContainer>}
 
         <Input {...register('dateOfBirth')} placeholder="Date of Birth" type="date" />
-        {errors.dateOfBirth && <ErrorMessage>{errors.dateOfBirth.message}</ErrorMessage>}
+        {errors.dateOfBirth && <ErrorContainer>{errors.dateOfBirth.message}</ErrorContainer>}
 
         <Input {...register('phoneNumber')} placeholder="Phone Number" />
-        {errors.phoneNumber && <ErrorMessage>{errors.phoneNumber.message}</ErrorMessage>}
+        {errors.phoneNumber && <ErrorContainer>{errors.phoneNumber.message}</ErrorContainer>}
 
         <Select {...register('country')}>
-          <option value="" disabled selected>
+          <option value="" disabled>
               Select a country
           </option>
            {countryOptions.map((country, index) => (
@@ -89,19 +84,19 @@ const Step1Form: React.FC<{ onNext: () => void; saveData: (data: Step1Data) => v
              </option>
            ))}
         </Select>
-        {errors.country && <ErrorMessage>{errors.country.message}</ErrorMessage>}
+        {errors.country && <ErrorContainer>{errors.country.message}</ErrorContainer>}
 
         <Input {...register('address')} placeholder="Address" />
-        {errors.address && <ErrorMessage>{errors.address.message}</ErrorMessage>}
+        {errors.address && <ErrorContainer>{errors.address.message}</ErrorContainer>}
 
         <Input {...register('city')} placeholder="City" />
-        {errors.city && <ErrorMessage>{errors.city.message}</ErrorMessage>}
+        {errors.city && <ErrorContainer>{errors.city.message}</ErrorContainer>}
 
         <Input {...register('state')} placeholder="State" />
-        {errors.state && <ErrorMessage>{errors.state.message}</ErrorMessage>}
+        {errors.state && <ErrorContainer>{errors.state.message}</ErrorContainer>}
 
         <Input {...register('zipCode')} placeholder="Zip Code" />
-        {errors.zipCode && <ErrorMessage>{errors.zipCode.message}</ErrorMessage>}
+        {errors.zipCode && <ErrorContainer>{errors.zipCode.message}</ErrorContainer>}
 
         <Button type="submit">Save and Next</Button>
       </FormWrapper>

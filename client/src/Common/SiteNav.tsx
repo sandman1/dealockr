@@ -20,11 +20,11 @@ function SiteNav({isAuthenticated}: SiteNavProps): React.ReactElement {
 
 
     useEffect(() => {
-        const savedData = localStorage.getItem('accessToken');
-        
-        if (savedData) {
-          setIsLoggedIn(true);
-        }
+      const savedData = localStorage.getItem('accessToken');
+      
+      if (savedData) {
+        setIsLoggedIn(true);
+      }
         
     }, [isLoggedIn, isAuthenticated])
 
@@ -34,7 +34,12 @@ function SiteNav({isAuthenticated}: SiteNavProps): React.ReactElement {
       <Logo onClick={() => navigate('/')}>Dealockr</Logo>
       <NavLinks>
         <Link to="/">Home</Link>
-        <Link to="/dashboard">Dashboard</Link>
+        {isLoggedIn && (
+          <>
+          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/verificationForm">Get Verified</Link>
+        </>
+        )}
         <Link to="/about">About</Link>
       </NavLinks>
       <AuthLinks>
@@ -46,10 +51,10 @@ function SiteNav({isAuthenticated}: SiteNavProps): React.ReactElement {
         ) : (
           <>
             <LinkContainer to="/login">Login</LinkContainer>
-            {/* <LinkContainer to="/register">Register</LinkContainer> */}
-            <LinkContainer to="/verificationForm">Register</LinkContainer>
+            <LinkContainer to="/register">Register</LinkContainer>
+            {/* <LinkContainer to="/verificationForm">Register</LinkContainer> */}
           </>
-        )}
+         )}
       </AuthLinks>
     </NavbarContainer>
   );

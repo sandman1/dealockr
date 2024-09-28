@@ -17,7 +17,7 @@ const AppRoutes = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('idToken');
     setIsAuthenticated(!!token);
   }, []);
 
@@ -26,7 +26,7 @@ const AppRoutes = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('idToken');
     setIsAuthenticated(false); 
   };
 

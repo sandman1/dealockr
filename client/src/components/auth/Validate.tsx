@@ -36,7 +36,6 @@ function Validate() {
             });
             setMessage('Account confirmed successfully!');
             navigate('/login')
-            console.log(response.data);
         } catch (error) {
             setError('Failed to confirm account. Please check the confirmation code.');
             console.error(error);
