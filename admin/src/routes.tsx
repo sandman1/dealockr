@@ -35,8 +35,10 @@ const AppRoutes = () => {
       <SiteNav isAuthenticated={isAuthenticated}/>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
-        <Route path="/user/:id" element={<PrivateRoute><UserDetails /></PrivateRoute>} />
+        {/* <Route path="/dashboard" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} /> */}
+        <Route path="/dashboard" element={<AdminDashboard />} />
+        {/* <Route path="/user/:id" element={<PrivateRoute><UserDetails /></PrivateRoute>} /> */}
+        <Route path="/user/:id" element={<UserDetails />} />
       </Routes>
       <SiteFooter />
     </Router>
